@@ -1,10 +1,16 @@
-local lazy = require "lazy"
 return {
   {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- format on save
     config = function()
       require "configs.conform"
+    end,
+  },
+  {
+    "github/copilot.vim",
+    event = "VeryLazy",
+    config = function()
+      -- require("copilot").setup {}
     end,
   },
   {

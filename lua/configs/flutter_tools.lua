@@ -23,38 +23,38 @@ require("flutter-tools").setup {
       project_config = true,
     },
   },
-  debugger = { -- integrate with nvim dap + install dart code debugger
-    enabled = true,
-    run_via_dap = true, -- use dap instead of a plenary job to run flutter apps
-    -- if empty dap will not stop on any exceptions, otherwise it will stop on those specified
-    -- see |:help dap.set_exception_breakpoints()| for more info
-    exception_breakpoints = {},
-    -- register_configurations = function(paths)
-    --   require("dap").configurations.dart = {}
-    -- end,
-  },
-  register_configurations = function(paths)
-    require("dap").configurations.dart = {
-      {
-        type = "dart",
-        request = "launch",
-        name = "Launch edm",
-        dartSdkPath = paths.dart_sdk,
-        flutterSdkPath = paths.flutter_sdk,
-        program = "${workspaceFolder}/apps/desktop/lib/main.dart",
-        cwd = "${workspaceFolder}/apps/desktop",
-      },
-      {
-        type = "dart",
-        request = "attach",
-        name = "Connect edm",
-        dartSdkPath = paths.dart_sdk,
-        flutterSdkPath = paths.flutter_sdk,
-        program = "${workspaceFolder}/apps/desktop/lib/main.dart",
-        cwd = "${workspaceFolder}/apps/desktop",
-      },
-    }
-  end,
+  -- debugger = { -- integrate with nvim dap + install dart code debugger
+  --   enabled = true,
+  --   run_via_dap = true, -- use dap instead of a plenary job to run flutter apps
+  --   -- if empty dap will not stop on any exceptions, otherwise it will stop on those specified
+  --   -- see |:help dap.set_exception_breakpoints()| for more info
+  --   exception_breakpoints = {},
+  --   -- register_configurations = function(paths)
+  --   --   require("dap").configurations.dart = {}
+  --   -- end,
+  -- },
+  -- register_configurations = function(paths)
+  --   require("dap").configurations.dart = {
+  --     {
+  --       type = "dart",
+  --       request = "launch",
+  --       name = "Launch edm",
+  --       dartSdkPath = paths.dart_sdk,
+  --       flutterSdkPath = paths.flutter_sdk,
+  --       program = "${workspaceFolder}/apps/desktop/lib/main.dart",
+  --       cwd = "${workspaceFolder}/apps/desktop",
+  --     },
+  --     {
+  --       type = "dart",
+  --       request = "attach",
+  --       name = "Connect edm",
+  --       dartSdkPath = paths.dart_sdk,
+  --       flutterSdkPath = paths.flutter_sdk,
+  --       program = "${workspaceFolder}/apps/desktop/lib/main.dart",
+  --       cwd = "${workspaceFolder}/apps/desktop",
+  --     },
+  --   }
+  -- end,
   -- flutter_path = "/snap/bin/flutter", -- <-- this takes priority over the lookup
   -- flutter_lookup_cmd = "dirname $(which flutter)", -- example "dirname $(which flutter)" or "asdf where flutter"
   -- root_patterns = { "pubspec.yaml" }, -- patterns to find the root of your flutter project
