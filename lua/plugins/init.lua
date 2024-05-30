@@ -13,6 +13,31 @@ return {
       -- require("copilot").setup {}
     end,
   },
+  -- {
+  --   "Exafunction/codeium.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   lazy = false,
+  --   config = function()
+  --     require("codeium").setup {}
+  --   end,
+  -- },
+  {
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").setup()
+    end,
+  },
+  {
+    "hrsh7th/nvim-cmp",
+  },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   -- install jsregexp (optional!).
+  --   build = "make install_jsregexp",
+  -- },
   {
     "tmillr/sos.nvim",
     config = function()
@@ -116,13 +141,16 @@ return {
     },
   },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "vim",
+        "lua",
+        "vimdoc",
+        "html",
+        "css",
+      },
+    },
+  },
 }

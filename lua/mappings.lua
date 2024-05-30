@@ -16,6 +16,8 @@ map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { noremap = true })
 -- Open code actions using the default LSP UI
 map("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", { noremap = true })
 
+map("n", "<leader>v", "<cmd>lua require('lsp_lines').toggle()<CR>", { noremap = true })
+
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
 
 map("n", "<leader>w", "<cmd>w<cr>", { noremap = true })
@@ -36,6 +38,12 @@ map("n", "<leader>5", "<CMD>lua require('harpoon.ui').nav_file(5)<CR>")
 -- end harpoon
 
 map("n", "<A-3>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "abc" }
+end, { desc = "Terminal toggle floating" })
+map("t", "<A-3>", function()
+  require("nvchad.term").toggle { pos = "sp", id = "abc" }
+end, { desc = "Terminal toggle floating" })
+map("tn", "<A-3>", function()
   require("nvchad.term").toggle { pos = "sp", id = "abc" }
 end, { desc = "Terminal toggle floating" })
 
