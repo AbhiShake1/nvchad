@@ -43,9 +43,6 @@ end, { desc = "Terminal toggle floating" })
 map("t", "<A-3>", function()
   require("nvchad.term").toggle { pos = "sp", id = "abc" }
 end, { desc = "Terminal toggle floating" })
-map("tn", "<A-3>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "abc" }
-end, { desc = "Terminal toggle floating" })
 
 --copilot
 map("i", "<A-a>", 'copilot#Accept("\\<CR>")', { noremap = true, silent = true, expr = true, replace_keycodes = false })
