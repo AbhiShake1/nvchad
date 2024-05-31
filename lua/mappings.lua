@@ -1,5 +1,4 @@
 require "nvchad.mappings"
-
 -- add yours here
 local map = vim.keymap.set
 
@@ -45,9 +44,9 @@ map("t", "<A-3>", function()
 end, { desc = "Terminal toggle floating" })
 
 --copilot
-map("i", "<A-a>", 'copilot#Accept("\\<CR>")', { noremap = true, silent = true, expr = true, replace_keycodes = false })
-map("i", "<A-n>", "copilot#Next()", { noremap = true, silent = true, expr = true, replace_keycodes = false })
-map("i", "<A-p>", "copilot#Previous()", { noremap = true, silent = true, expr = true, replace_keycodes = false })
-map("i", "<A-s>", "copilot#Suggest()", { noremap = true, silent = true, expr = true, replace_keycodes = false })
-vim.g.copilot_no_tab_map = true
+-- map("i", "<A-a>", 'copilot#Accept("\\<CR>")', { noremap = true, silent = true, expr = true, replace_keycodes = false })
+-- map("i", "<A-n>", "copilot#Next()", { noremap = true, silent = true, expr = true, replace_keycodes = false })
+-- map("i", "<A-p>", "copilot#Previous()", { noremap = true, silent = true, expr = true, replace_keycodes = false })
+-- map("i", "<A-s>", "copilot#Suggest()", { noremap = true, silent = true, expr = true, replace_keycodes = false })
+-- vim.g.copilot_no_tab_map = true
 --end copilot
