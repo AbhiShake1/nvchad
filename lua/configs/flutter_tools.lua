@@ -55,8 +55,8 @@ require("flutter-tools").setup {
       },
     }
   end,
-  flutter_path = "/snap/bin/flutter", -- <-- this takes priority over the lookup
-  flutter_lookup_cmd = "dirname $(which flutter)", -- example "dirname $(which flutter)" or "asdf where flutter"
+  -- flutter_path = "/snap/bin/flutter", -- <-- this takes priority over the lookup
+  -- flutter_lookup_cmd = "dirname $(which flutter)", -- example "dirname $(which flutter)" or "asdf where flutter"
   root_patterns = { "pubspec.yaml" }, -- patterns to find the root of your flutter project
   fvm = false, -- takes priority over path, uses <workspace>/.fvm/flutter_sdk if enabled
   widget_guides = {
