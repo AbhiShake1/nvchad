@@ -50,3 +50,13 @@ end, { desc = "Terminal toggle floating" })
 -- map("i", "<A-s>", "copilot#Suggest()", { noremap = true, silent = true, expr = true, replace_keycodes = false })
 -- vim.g.copilot_no_tab_map = true
 --end copilot
+--
+
+-- Telescope
+map("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", { noremap = true })
+map("n", "<leader>fl", "<cmd>Telescope resume<CR>", { noremap = true })
+map("n", "<leader>fc", "<cmd>Telescope resume<CR>", { noremap = true })
+map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { noremap = true })
+
+-- noice
+map("n", "<leader>fn", "<cmd>NoiceTelescope<CR>", { noremap = true })
