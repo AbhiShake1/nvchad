@@ -32,29 +32,35 @@ require("flutter-tools").setup {
     -- register_configurations = function(paths)
     --   require("dap").configurations.dart = {}
     -- end,
+    register_configurations = function(paths)
+      require("dap").adapters.dart = {
+        type = "executable",
+        command = vim.fn.stdpath "data" .. "/mason/bin/dart-debug-adapter",
+        args = { "flutter" },
+      }
+      require("dap").configurations.dart = {
+        {
+          type = "dart",
+          request = "launch",
+          name = "Launch edm",
+          dartSdkPath = paths.dart_sdk,
+          flutterSdkPath = paths.flutter_sdk,
+          program = "${workspaceFolder}/apps/desktop/lib/main.dart",
+          cwd = "${workspaceFolder}/apps/desktop",
+          -- toolArgs = { "-d", "linux", "--dart-define=flavor=staging" },
+        },
+        -- {
+        --   type = "dart",
+        --   request = "attach",
+        --   name = "Connect edm",
+        --   dartSdkPath = paths.dart_sdk,
+        --   flutterSdkPath = paths.flutter_sdk,
+        --   program = "${workspaceFolder}/lib/main.dart",
+        --   cwd = "${workspaceFolder}/apps/desktop",
+        -- },
+      }
+    end,
   },
-  register_configurations = function(paths)
-    require("dap").configurations.dart = {
-      {
-        type = "dart",
-        request = "launch",
-        name = "Launch edm",
-        dartSdkPath = paths.dart_sdk,
-        flutterSdkPath = paths.flutter_sdk,
-        program = "${workspaceFolder}/apps/desktop/lib/main.dart",
-        cwd = "${workspaceFolder}/apps/desktop",
-      },
-      {
-        type = "dart",
-        request = "attach",
-        name = "Connect edm",
-        dartSdkPath = paths.dart_sdk,
-        flutterSdkPath = paths.flutter_sdk,
-        program = "${workspaceFolder}/apps/desktop/lib/main.dart",
-        cwd = "${workspaceFolder}/apps/desktop",
-      },
-    }
-  end,
   -- flutter_path = "/snap/bin/flutter", -- <-- this takes priority over the lookup
   -- flutter_lookup_cmd = "dirname $(which flutter)", -- example "dirname $(which flutter)" or "asdf where flutter"
   root_patterns = { "pubspec.yaml" }, -- patterns to find the root of your flutter project
@@ -81,6 +87,7 @@ require("flutter-tools").setup {
     auto_open = false, -- if true this will open the outline automatically when it is first populated
   },
   on_attach = require("vim.lsp").common_on_attach,
+  capabilities = require("vim.lsp").default_capabilities,
   lsp = {
     color = { -- show the derived colours for dart variables
       enabled = false, -- whether or not to highlight color variables at all, only supported on flutter >= 2.10
