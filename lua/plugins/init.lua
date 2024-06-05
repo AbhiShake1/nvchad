@@ -1,5 +1,25 @@
 return {
   {
+    "dmmulroy/ts-error-translator.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("ts-error-translator").setup {
+        -- options
+        -- see `:h ts-error-translator-config`
+      }
+      -- require "configs.ts_error_translator"
+    end,
+  },
+  {
+    "m4xshen/hardtime.nvim",
+    event = "VeryLazy",
+    dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("hardtime").setup {}
+    end,
+    opts = {},
+  },
+  {
     "stevearc/conform.nvim",
     event = "BufWritePre", -- format on save
     config = function()
@@ -41,6 +61,24 @@ return {
       }
     end,
   },
+  -- {
+  --   "kawre/leetcode.nvim",
+  --   event = "VeryLazy",
+  --   build = ":TSUpdate html",
+  --   dependencies = {
+  --     "nvim-telescope/telescope.nvim",
+  --     "nvim-lua/plenary.nvim", -- required by telescope
+  --     "MunifTanjim/nui.nvim",
+  --
+  --     -- optional
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "rcarriga/nvim-notify",
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  --   opts = {
+  --     -- configuration goes here
+  --   },
+  -- },
   -- {
   --   "plugins/telescope-live-grep-args",
   --   -- event = "VeryLazy",
