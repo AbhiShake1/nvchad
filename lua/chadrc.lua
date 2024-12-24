@@ -4,13 +4,30 @@
 ---@type ChadrcConfig
 local M = {}
 
+local utils = require "utils"
+
+-- local utils = require "utils"
 M.ui = {
   theme = "ayu_dark",
   tabufline = {
-    order = { "treeOffset", "buffers", "tabs", "btns", "abc" },
+    order = { "treeOffset", "buffers", "tabs", "btns", "errorStatus" },
     modules = {
-      abc = function()
-        return "Thou code shall not work!!"
+      errorStatus = function()
+        local diagnostics = utils.lsp.collect_diagnostics()
+
+        local errors = diagnostics.errors
+        local warnings = diagnostics.warnings
+        local infos = diagnostics.infos
+
+        if errors > 0 then
+          return "Thou code shall not work!!"
+        elseif warnings > 0 then
+          return "Thou code be shit!!"
+        elseif infos > 0 then
+          return "Thou code be soy!!"
+        else
+          return "Thou code seems fine for now :)"
+        end
       end,
     },
   },
@@ -66,36 +83,5 @@ M.ui = {
     ["@comment"] = { italic = true },
   },
 }
-
-local function has_lsp_errors()
-  local bufnr = vim.api.nvim_get_current_buf()
-  local method = "textDocument/diagnostic"
-  local params = {
-    textDocument = vim.lsp.util.make_text_document_params(),
-  }
-  local diagnostics = vim.lsp.buf_request_sync(bufnr, method, params)
-
-  return diagnostics and #diagnostics == 0
-end
-
-local function reload_if_has_lsp_errors()
-  if has_lsp_errors() then
-    M.ui.tabufline.modules = {
-      -- You can add your custom component
-      abc = function()
-        return "thou code shall not work!!"
-      end,
-    }
-  else
-    M.ui.tabufline.modules = {
-      -- You can add your custom component
-      abc = function()
-        return ""
-      end,
-    }
-  end
-end
-
--- vim.cmd [[autocmd BufWritePost * lua reload_if_has_lsp_errors()]]
 
 return M

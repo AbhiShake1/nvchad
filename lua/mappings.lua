@@ -1,6 +1,9 @@
-require "nvchad.mappings"
--- add yours here
+require "nvchad.mappings" -- add yours here
 local map = vim.keymap.set
+
+-- map("n", "<CapsLock>", "<C-u>", { noremap = true, silent = true })
+-- map({ "n", "i", "v", "c", "t" }, "<Esc>", "<Nop>")
+-- map({ "n", "i", "v", "c", "t" }, "<Esc>", "<Nop>", { desc = "Remap Esc" })
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
@@ -11,15 +14,26 @@ map("n", "gk", "<cmd>lua vim.lsp.buf.hover()<cr>", { noremap = true })
 
 -- Jump to definition
 map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { noremap = true })
+map("n", "<leader>d", "<cmd>TSToolsGoToSourceDefinition<cr>", { noremap = false })
 
 -- Open code actions using the default LSP UI
-map("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", { noremap = true })
+map({ "n", "v" }, "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", { noremap = true })
 
 map("n", "<leader>v", "<cmd>lua require('lsp_lines').toggle()<CR>", { noremap = true })
 
 map("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { noremap = true, silent = true })
 
 map("n", "<leader>w", "<cmd>w<cr>", { noremap = true })
+
+map("v", "rr", "<cmd>SnipRun<cr>", { noremap = true })
+
+map("n", "<A-j>", function()
+  vim.diagnostic.goto_next()
+end, { noremap = true, silent = true })
+
+map("n", "<A-k>", function()
+  vim.diagnostic.goto_prev()
+end, { noremap = true, silent = true })
 
 -- harpoon
 map("n", "<leader><C-Space>", "<cmd>lua require('harpoon.cmd-ui').toggle_quick_menu()<CR>")
@@ -36,12 +50,33 @@ map("n", "<leader>4", "<CMD>lua require('harpoon.ui').nav_file(4)<CR>")
 map("n", "<leader>5", "<CMD>lua require('harpoon.ui').nav_file(5)<CR>")
 -- end harpoon
 
-map("n", "<A-3>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "abc" }
-end, { desc = "Terminal toggle floating" })
-map("t", "<A-3>", function()
-  require("nvchad.term").toggle { pos = "sp", id = "abc" }
-end, { desc = "Terminal toggle floating" })
+-- toggleterm
+local Terminal = require("toggleterm.terminal").Terminal
+local _v_term = Terminal:new { direction = "vertical" }
+local _h_term = Terminal:new { direction = "horizontal" }
+local _f_term = Terminal:new { direction = "float" }
+
+map("n", "<A-a>", function()
+  _h_term:toggle()
+end, { desc = "Terminal toggle 1" })
+map("t", "<A-a>", function()
+  _h_term:toggle()
+end, { desc = "Terminal toggle 1" })
+
+map("n", "<A-s>", function()
+  _v_term:toggle()
+end, { desc = "Terminal toggle 2" })
+map("t", "<A-s>", function()
+  _v_term:toggle()
+end, { desc = "Terminal toggle 2" })
+
+map("n", "<A-d>", function()
+  _f_term:toggle()
+end, { desc = "Terminal toggle 3" })
+map("t", "<A-d>", function()
+  _f_term:toggle()
+end, { desc = "Terminal toggle 3" })
+-- end toggleterm
 
 --copilot
 -- map("i", "<A-a>", 'copilot#Accept("\\<CR>")', { noremap = true, silent = true, expr = true, replace_keycodes = false })
